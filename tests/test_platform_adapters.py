@@ -148,7 +148,7 @@ class CapabilityMatrix(unittest.TestCase):
     def test_install_paths_documented_match_installer(self):
         inst = load_script("install_skill")
         for target, (adapter, rel, scope) in inst.TARGETS.items():
-            self.assertIn(rel.as_posix(), self.t if scope == "user" else self.t + (ROOT / "README.md").read_text(encoding="utf-8"))
+            self.assertIn(rel.as_posix(), self.t if scope == "user" else self.t + (ROOT / "README.md").read_text(encoding="utf-8") + (ROOT / "docs/USAGE.md").read_text(encoding="utf-8"))
 
 
 class RepoConsistency(unittest.TestCase):
@@ -168,7 +168,8 @@ class RepoConsistency(unittest.TestCase):
         self.assertIn(f'version: "{v}"', (ROOT / "adapters/claude-code/SKILL.md").read_text(encoding="utf-8"))
 
     def test_readme_matches_help(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        # README is the short beginner page; the complete option reference lives in docs/USAGE.md
+        readme = (ROOT / "README.md").read_text(encoding="utf-8") + "\n" + (ROOT / "docs/USAGE.md").read_text(encoding="utf-8")
         for s in SCRIPT_NAMES:
             self.assertIn(f"scripts/{s}.py", readme, f"README never mentions {s}.py")
             for opt in option_strings(s) - {"--help", "--version"}:

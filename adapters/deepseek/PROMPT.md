@@ -1,7 +1,7 @@
 # resume-design — DeepSeek 使用提示词
 
 **兼容状态：人工流程（manual）；尚未在 DeepSeek 上实测。** 提示词只能让模型"对话"，不能控制你的电脑；
-生成 Word/PDF 需要你在本地运行 Python 脚本（见 README）。
+生成 Word/PDF 需要你在本地运行 Python 脚本（见 README 和 docs/USAGE.md）。
 
 ## 怎么用
 1. 网页/App：新开对话，把下面"---"之后的整段内容作为第一条消息发送；API：作为 `system` 消息。

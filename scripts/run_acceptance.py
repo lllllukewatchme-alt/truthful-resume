@@ -140,7 +140,7 @@ def main(argv=None) -> int:
           "- LibreOffice 真实导出：本机未安装。", "- macOS/Linux：未测试。", "- 分页、其他 Word 版本差异、目标 ATS 解析：无法离线验证（报告 C 类）。",
           "- 十个任务场景中的**模型对话行为**（提问、措辞、口头拒绝）未测试，仅测试了工具链；见 skill-scenarios.md。",
           "- 未执行与 Skill Creator 的基线对比（本机/本环境未使用该工具）。", "",
-          "## 6. 安装、调用与升级", "", "见 README 第 7–9、17、23 节。安装预览：`python scripts/install_skill.py --target claude-code-user --dry-run`。", ""]
+          "## 6. 安装、调用与升级", "", "见 docs/USAGE.md 第 7–9、17、23 节。安装预览：`python scripts/install_skill.py --target claude-code-user --dry-run`。", ""]
     rp = unique(out / "acceptance-report.md", args.force)
     rp.write_text("\n".join(L), encoding="utf-8")
 

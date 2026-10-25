@@ -2,7 +2,7 @@
 
 How to use: paste the block, then say what you want ("create a resume", paste your old resume, paste a JD...).
 Capability: this prompt can only make the model talk. It **cannot** touch your computer. To get .docx/.pdf you run
-the Python toolkit yourself (see README "通用大模型使用方法"). Status: manual flow, untested on specific vendors.
+the Python toolkit yourself (see README and docs/USAGE.md, section "通用大模型使用方法"). Status: manual flow, untested on specific vendors.
 
 ---
 

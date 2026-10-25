@@ -32,7 +32,7 @@ python -m unittest discover -s tests
 - No network calls, no shelling out with `shell=True`, no logging of resume contents (use `redact`/`snippet`).
 
 ## Docs & adapters
-- If you change a CLI option, update `README.md` (the test suite checks that README and `--help` agree).
+- If you change a CLI option, update `docs/USAGE.md` (the full reference; the test suite checks that README + USAGE and `--help` agree).
 - `adapters/*/SKILL.md` follow the official Claude Code / Codex skill formats; keep them short and put detail in `core/` and `references/`.
 - Platform status lives in `core/platform-capabilities.md`. Use *tested / spec-based / manual / unsupported* honestly.
 

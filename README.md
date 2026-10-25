@@ -65,22 +65,28 @@ python scripts/generate_resume.py --input examples/sample_resume_rich.json --out
 
 ## 常用命令
 
+把 `你的文件.json` 换成你自己的文件名（可以复制 `examples/` 里的示例来改）。结果都放在 `out/` 文件夹里。
+
 | 想做什么 | 命令 |
 |---|---|
-| 生成简历 | `python scripts/generate_resume.py --input 你的文件.json --output-dir out --formats md,docx,pdf` |
-| 只检查不生成 | `python scripts/validate_resume.py --input 你的文件.json` |
-| 对照招聘要求 | `python scripts/match_jd.py --input 你的文件.json --jd 招聘要求.md` |
-| 检查电脑能不能导出 PDF | `python scripts/inspect_environment.py` |
-| 运行全部测试 | `python -m unittest discover -s tests` |
+| 做一份简历（Word + PDF + Markdown） | `python scripts/generate_resume.py --input 你的文件.json --output-dir out --formats md,docx,pdf` |
+| 换个模板 | 在上一条命令后面加 `--template timeline`（名字见上面的模板表） |
+| 只检查，不生成 | `python scripts/validate_resume.py --input 你的文件.json` |
+| 看简历和招聘要求对不对得上 | `python scripts/match_jd.py --input 你的文件.json --jd 招聘要求.md` |
+| 看电脑能不能导出 PDF | `python scripts/inspect_environment.py` |
 
 ## 简历的四种状态
 
-| 状态 | 意思 |
-|---|---|
-| `draft` 草稿 | 有错误，要先改 |
-| `needs_review` 需要核对 | 还有没填的 `{{MISSING}}`，或 AI 改写等你确认 |
-| `validated` 通过检查 | 自动检查都过了，但事实、联系方式仍需你自己确认 |
-| `ready_to_submit` 可投递 | 你亲自确认过（命令里加 `--confirm-ready`）并且没有未解决问题 |
+每次生成后，报告第一行会告诉你这份简历走到了哪一步：
+
+| 状态 | 意思 | 你要做什么 |
+|---|---|---|
+| `draft` 草稿 | 有错误，比如缺姓名、日期写错 | 按提示先改 |
+| `needs_review` 需要核对 | 还有没填的 `{{MISSING}}`，或 AI 改写的内容等你确认 | 补全、确认，再重新生成 |
+| `validated` 通过检查 | 自动检查都过了 | 自己再核对一遍事实和联系方式 |
+| `ready_to_submit` 可投递 | 你亲自确认过才会出现（命令里加 `--confirm-ready`） | 可以投递了 |
+
+工具不会自己宣布"可投递"，这一步只能由你来决定。
 
 ## 遇到问题
 

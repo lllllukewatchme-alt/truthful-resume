@@ -1,0 +1,5 @@
+{
+  "_comment": "Overrides resume_design/templates.py DEFAULT_RULES. Keys: ats, default, technical_keywords, management_keywords, creative_keywords. Explicit --template always wins.",
+  "ats": "ats-clean",
+  "default": "modern-business"
+}

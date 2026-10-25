@@ -1,0 +1,67 @@
+{
+  "basics": {
+    "name": "Lin Yuan",
+    "name_parts": {"given": "Yuan", "family": "Lin"},
+    "headline": "Backend Engineer · Distributed Systems & Data Platforms",
+    "email": "lin.yuan@example.com",
+    "phone": "138-0000-0000",
+    "location": "Shanghai",
+    "website": "https://github.com/example-linyuan",
+    "summary": "Backend engineer with 6 years of experience building order and data-platform systems; works with Java/Go microservices, MySQL, Redis and Kafka."
+  },
+  "target": {"role": "Backend Engineer", "industry": "E-commerce", "locale": "en-US", "language": "en", "job_description": ""},
+  "experience": [
+    {
+      "organization": "Example Technology Co., Ltd.",
+      "role": "Senior Backend Engineer",
+      "location": "Shanghai",
+      "start": "2021-03",
+      "end": "present",
+      "bullets": [
+        "Designed and iterated the order-center service, handling about 2 million orders per day",
+        "Reduced P99 latency of the order query API from 800ms to 120ms",
+        "Led a 4-person group to split the inventory service and introduced a canary release process"
+      ],
+      "evidence": ["2023 performance review: order-center performance report (provided by the user)"],
+      "confirmation_status": "user_confirmed"
+    },
+    {
+      "organization": "Sample Information Technology Co., Ltd.",
+      "role": "Backend Engineer",
+      "location": "Hangzhou",
+      "start": "2018-07",
+      "end": "2021-02",
+      "bullets": [
+        "Contributed to the offline job-scheduling module of the data platform",
+        "Built task retry and alerting, reducing manual monitoring work"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "organization": "Real-time Metrics Dashboard",
+      "role": "Core Developer",
+      "start": "2022-05",
+      "end": "2022-11",
+      "bullets": ["Built a real-time metrics pipeline with Kafka and Flink, giving operations minute-level dashboards"]
+    }
+  ],
+  "education": [
+    {
+      "organization": "Example University",
+      "role": "B.Eng. in Computer Science and Technology",
+      "location": "Hangzhou",
+      "start": "2014-09",
+      "end": "2018-06"
+    }
+  ],
+  "skills": [
+    {"category": "Languages", "items": ["Java", "Go", "Python", "SQL"]},
+    {"category": "Middleware", "items": ["MySQL", "Redis", "Kafka", "Elasticsearch"]},
+    {"category": "Engineering", "items": ["Docker", "Kubernetes", "CI/CD", "Unit testing"]}
+  ],
+  "certificates": [{"name": "Software Designer (Intermediate)", "issuer": "Example Examination Authority", "date": "2019-11"}],
+  "languages": [{"language": "English", "level": "CET-6"}, {"language": "Mandarin", "level": "Native"}],
+  "awards": [],
+  "preferences": {"template": "", "page_limit": 2, "photo": false}
+}

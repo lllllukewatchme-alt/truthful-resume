@@ -1,0 +1,16 @@
+{
+  "name": "technical",
+  "description": "Dense single column; skills block promoted; blue accent; compact spacing for engineering roles.",
+  "density": "compact",
+  "page": {"size": "A4", "margins_mm": {"top": 14, "right": 15, "bottom": 13, "left": 15}},
+  "fonts": {"latin": "Calibri", "east_asian": "Microsoft YaHei", "body_pt": 10, "name_pt": 22, "heading_pt": 11.5, "entry_pt": 10, "contact_pt": 9.5},
+  "spacing": {"line_multiple": 1.05, "para_after_pt": 1, "section_before_pt": 7, "section_after_pt": 2, "entry_before_pt": 3, "char_spacing_pt": 0},
+  "colors": {"text": "1F2328", "muted": "57606A", "accent": "0B5FA5", "heading": "0B5FA5"},
+  "heading": {"style": "rule", "caps": false},
+  "header": {"align": "left", "contact_layout": "inline"},
+  "bullets": {"char": "▪", "indent_mm": 4},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": []},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": false},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

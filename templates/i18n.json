@@ -1,0 +1,56 @@
+{
+  "_comment": "Section labels per language and localisation rules per locale. Extend by adding keys; no code change needed.",
+  "labels": {
+    "zh": {
+      "summary": "个人简介", "education": "教育背景", "experience": "工作经历", "projects": "项目经历",
+      "skills": "专业技能", "certificates": "证书与资质", "languages": "语言能力", "awards": "奖项与荣誉",
+      "email": "邮箱", "phone": "电话", "location": "所在地", "website": "网站", "present": "至今",
+      "contact": "联系方式"
+    },
+    "en": {
+      "summary": "Summary", "education": "Education", "experience": "Experience", "projects": "Projects",
+      "skills": "Skills", "certificates": "Certifications", "languages": "Languages", "awards": "Awards",
+      "email": "Email", "phone": "Phone", "location": "Location", "website": "Website", "present": "Present",
+      "contact": "Contact"
+    }
+  },
+  "label_aliases": {
+    "summary": ["个人简介", "自我评价", "个人总结", "简介", "summary", "profile", "about", "professional summary"],
+    "education": ["教育背景", "教育经历", "学历", "education"],
+    "experience": ["工作经历", "工作经验", "职业经历", "实习经历", "experience", "work experience", "employment", "professional experience"],
+    "projects": ["项目经历", "项目经验", "项目", "projects", "project experience"],
+    "skills": ["专业技能", "技能", "技能特长", "skills", "technical skills"],
+    "certificates": ["证书与资质", "证书", "资质", "certificates", "certifications", "licenses"],
+    "languages": ["语言能力", "语言", "languages"],
+    "awards": ["奖项与荣誉", "奖项", "荣誉", "获奖", "awards", "honors"],
+    "email": ["邮箱", "电子邮箱", "email", "e-mail"],
+    "phone": ["电话", "手机", "联系电话", "phone", "mobile", "tel"],
+    "location": ["所在地", "地址", "城市", "location", "address", "city"],
+    "website": ["网站", "主页", "个人主页", "链接", "website", "link", "github", "linkedin", "portfolio"]
+  },
+  "locales": {
+    "zh-CN": {
+      "lang": "zh", "date_style": "dot", "name_order": "family_given", "page_hint": 2,
+      "photo_customary": true,
+      "notes": ["Chinese resumes often list age/photo; this tool never adds them without user input."]
+    },
+    "zh-TW": {
+      "lang": "zh", "date_style": "dot", "name_order": "family_given", "page_hint": 2, "photo_customary": true, "notes": []
+    },
+    "en-US": {
+      "lang": "en", "paper": "Letter", "date_style": "en_short", "name_order": "given_family", "page_hint": 1,
+      "photo_customary": false,
+      "notes": ["US resumes normally omit photo, age, marital status and national ID.", "Use 1 page for <10 years of experience; verify degree names with the user, do not convert equivalents."]
+    },
+    "en-GB": {
+      "lang": "en", "date_style": "en_short", "name_order": "given_family", "page_hint": 2,
+      "photo_customary": false,
+      "notes": ["UK CVs are commonly 2 pages; omit photo and personal details unless requested."]
+    },
+    "en-CA": {"lang": "en", "paper": "Letter", "date_style": "en_short", "name_order": "given_family", "page_hint": 2, "photo_customary": false, "notes": []},
+    "en-AU": {"lang": "en", "date_style": "en_short", "name_order": "given_family", "page_hint": 2, "photo_customary": false, "notes": []},
+    "en-SG": {"lang": "en", "date_style": "en_short", "name_order": "given_family", "page_hint": 2, "photo_customary": false, "notes": []},
+    "default": {"lang": "en", "date_style": "iso", "name_order": "given_family", "page_hint": 2, "photo_customary": false, "notes": ["Unknown locale: generic rules applied; confirm local conventions with the user."]}
+  },
+  "default_locale_for_lang": {"zh": "zh-CN", "en": "en-US"}
+}

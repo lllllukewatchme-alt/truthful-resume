@@ -1,0 +1,16 @@
+{
+  "name": "creative",
+  "description": "Two-column layout (borderless table): sidebar for skills/languages/certificates/awards, bold accent. Not ATS-safe; also produce an ats-clean version.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 14, "right": 14, "bottom": 14, "left": 14}},
+  "fonts": {"latin": "Segoe UI", "east_asian": "Microsoft YaHei", "body_pt": 10, "name_pt": 28, "heading_pt": 11.5, "entry_pt": 10, "contact_pt": 9.5},
+  "spacing": {"line_multiple": 1.15, "para_after_pt": 2, "section_before_pt": 9, "section_after_pt": 3, "entry_before_pt": 5, "char_spacing_pt": 0},
+  "colors": {"text": "262626", "muted": "6B6B6B", "accent": "C2410C", "heading": "C2410C"},
+  "heading": {"style": "plain", "caps": true},
+  "header": {"align": "left", "contact_layout": "stacked"},
+  "bullets": {"char": "•", "indent_mm": 4},
+  "layout": {"columns": 2, "sidebar_side": "left", "sidebar_width_pct": 37, "sidebar_sections": ["skills", "languages", "certificates", "awards"]},
+  "header_footer": {"footer_text": "", "page_numbers": false},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": false, "use_tables": true, "use_text_boxes": false}
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "resume-design/resume.schema.json",
+  "title": "resume-design resume",
+  "type": "object",
+  "definitions": {
+    "status": {"type": "string", "enum": ["user_provided", "ai_suggested", "user_confirmed", "unconfirmed"]},
+    "date": {"type": "string"},
+    "bullet": {
+      "oneOf": [
+        {"type": "string"},
+        {"type": "object", "required": ["text"], "properties": {
+          "text": {"type": "string"}, "original": {"type": "string"},
+          "status": {"$ref": "#/definitions/status"}}}
+      ]
+    },
+    "entry": {
+      "type": "object",
+      "required": ["organization"],
+      "properties": {
+        "organization": {"type": "string"},
+        "role": {"type": "string"},
+        "location": {"type": "string"},
+        "start": {"$ref": "#/definitions/date"},
+        "end": {"$ref": "#/definitions/date"},
+        "description": {"type": "string"},
+        "bullets": {"type": "array", "items": {"$ref": "#/definitions/bullet"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "confirmation_status": {"$ref": "#/definitions/status"}
+      }
+    }
+  },
+  "required": ["basics"],
+  "properties": {
+    "basics": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string"},
+        "name_parts": {"type": "object", "properties": {"given": {"type": "string"}, "family": {"type": "string"}}},
+        "headline": {"type": "string"},
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        "location": {"type": "string"},
+        "website": {"type": "string"},
+        "summary": {"type": "string"}
+      }
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "role": {"type": "string"}, "industry": {"type": "string"}, "locale": {"type": "string"},
+        "language": {"type": "string"}, "job_description": {"type": "string"}
+      }
+    },
+    "education": {"type": "array", "items": {"$ref": "#/definitions/entry"}},
+    "experience": {"type": "array", "items": {"$ref": "#/definitions/entry"}},
+    "projects": {"type": "array", "items": {"$ref": "#/definitions/entry"}},
+    "skills": {
+      "type": "array",
+      "items": {"oneOf": [
+        {"type": "string"},
+        {"type": "object", "required": ["items"], "properties": {
+          "category": {"type": "string"}, "items": {"type": "array", "items": {"type": "string"}}}}
+      ]}
+    },
+    "certificates": {
+      "type": "array",
+      "items": {"oneOf": [
+        {"type": "string"},
+        {"type": "object", "required": ["name"], "properties": {
+          "name": {"type": "string"}, "issuer": {"type": "string"}, "date": {"type": "string"},
+          "evidence": {"type": "string"}, "confirmation_status": {"$ref": "#/definitions/status"}}}
+      ]}
+    },
+    "languages": {
+      "type": "array",
+      "items": {"oneOf": [
+        {"type": "string"},
+        {"type": "object", "required": ["language"], "properties": {"language": {"type": "string"}, "level": {"type": "string"}}}
+      ]}
+    },
+    "awards": {
+      "type": "array",
+      "items": {"oneOf": [
+        {"type": "string"},
+        {"type": "object", "required": ["name"], "properties": {
+          "name": {"type": "string"}, "date": {"type": "string"}, "description": {"type": "string"}}}
+      ]}
+    },
+    "preferences": {
+      "type": "object",
+      "properties": {
+        "template": {"type": "string"},
+        "page_limit": {"type": "integer", "minimum": 1, "maximum": 10},
+        "photo": {"type": "boolean"}
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "section_order": {"type": "array", "items": {"type": "string"}},
+        "review": {
+          "type": "object",
+          "properties": {
+            "facts_confirmed": {"type": "boolean"},
+            "contact_confirmed": {"type": "boolean"},
+            "target_confirmed": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

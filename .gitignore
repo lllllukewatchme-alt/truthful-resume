@@ -1,0 +1,66 @@
+# --- Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# --- Secrets and local configuration (never commit)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+secrets.*
+credentials*
+.npmrc
+.pypirc
+
+# --- Local AI assistant state (skills are installed from adapters/, not kept here)
+.claude/
+.agents/
+.codex/
+CLAUDE.local.md
+AGENTS.local.md
+
+# --- Windows / editors / OS
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# --- Generated output and temporary files of this project
+out/
+output/
+tmp/
+*.tmp
+.rd-*
+*.report.json
+*.docx
+*.pdf
+*.log
+
+# --- Personal resumes (keep your own data out of the repository)
+my-resume*/
+private/
+resume.json
+resume.md
+
+# --- Exceptions: fictional examples that belong in the repository
+!examples/*.json
+!examples/*.md
+
+# --- Local working copies that must never be published (copied here by the desktop app / audit notes)
+/resume-design/
+/audit-2026-10-25/

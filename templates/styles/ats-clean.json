@@ -1,0 +1,16 @@
+{
+  "name": "ats-clean",
+  "description": "Single column, no tables/graphics, black text, standard headings. For online/ATS submission.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 18, "right": 18, "bottom": 16, "left": 18}},
+  "fonts": {"latin": "Arial", "east_asian": "Microsoft YaHei", "body_pt": 10.5, "name_pt": 20, "heading_pt": 12, "entry_pt": 10.5, "contact_pt": 10},
+  "spacing": {"line_multiple": 1.12, "para_after_pt": 2, "section_before_pt": 10, "section_after_pt": 3, "entry_before_pt": 5, "char_spacing_pt": 0},
+  "colors": {"text": "000000", "muted": "000000", "accent": "000000", "heading": "000000"},
+  "heading": {"style": "caps_rule", "caps": true},
+  "header": {"align": "left", "contact_layout": "inline"},
+  "bullets": {"char": "•", "indent_mm": 5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": []},
+  "header_footer": {"footer_text": "", "page_numbers": false},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

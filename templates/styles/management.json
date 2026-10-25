@@ -1,0 +1,16 @@
+{
+  "name": "management",
+  "description": "Serif, generous whitespace, navy palette, centred header; for leadership and executive roles.",
+  "density": "spacious",
+  "page": {"size": "A4", "margins_mm": {"top": 22, "right": 22, "bottom": 20, "left": 22}},
+  "fonts": {"latin": "Cambria", "east_asian": "SimSun", "body_pt": 10.5, "name_pt": 24, "heading_pt": 12.5, "entry_pt": 11, "contact_pt": 10},
+  "spacing": {"line_multiple": 1.25, "para_after_pt": 3, "section_before_pt": 14, "section_after_pt": 5, "entry_before_pt": 7, "char_spacing_pt": 0.2},
+  "colors": {"text": "222222", "muted": "5A5A5A", "accent": "1F2A44", "heading": "1F2A44"},
+  "heading": {"style": "caps_rule", "caps": true},
+  "header": {"align": "center", "contact_layout": "inline"},
+  "bullets": {"char": "–", "indent_mm": 5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": []},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

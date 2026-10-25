@@ -1,0 +1,20 @@
+# AGENTS.md (example for a resume project)
+
+Copy to the root of the folder where you keep resumes, rename to `AGENTS.md`, and adjust. It complements the
+`resume-design` skill (installed in `.agents/skills/` or `~/.agents/skills/`); it does not replace it.
+
+## Project rules
+- This folder contains personal resume data. Never upload it, never paste it into web services, never commit it to a public repo.
+- Source of truth: `resume.json` (or `resume.md`). Edit data, then regenerate; do not hand-edit generated `.docx`/`.pdf`.
+- Generated files go to `out/`. Never overwrite existing files without being asked (`--force` only on named files).
+- Facts (employers, dates, degrees, numbers) change only when I say so. Mark your rewrites `ai_suggested`.
+- Use `{{MISSING:field}}` for anything unknown; never invent.
+
+## Commands (replace <skill-dir> with the install path)
+- Generate: `python <skill-dir>/scripts/generate_resume.py --input resume.json --output-dir out --formats md,docx,pdf`
+- Validate: `python <skill-dir>/scripts/validate_resume.py --input resume.json --docx out/resume.docx`
+- Environment: `python <skill-dir>/scripts/inspect_environment.py`
+
+## Reporting
+Always report three blocks: automated results, items I must confirm, things that cannot be verified. Say the status
+(draft / needs_review / validated / ready_to_submit). Do not call a resume ready just because files were created.

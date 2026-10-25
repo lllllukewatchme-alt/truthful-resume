@@ -1,0 +1,16 @@
+{
+  "name": "modern-business",
+  "description": "Balanced default: sans-serif, teal accent, shaded section bars, medium density.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 16, "right": 17, "bottom": 15, "left": 17}},
+  "fonts": {"latin": "Calibri", "east_asian": "Microsoft YaHei", "body_pt": 10.5, "name_pt": 24, "heading_pt": 11.5, "entry_pt": 10.5, "contact_pt": 10},
+  "spacing": {"line_multiple": 1.15, "para_after_pt": 2, "section_before_pt": 10, "section_after_pt": 4, "entry_before_pt": 5, "char_spacing_pt": 0},
+  "colors": {"text": "222B33", "muted": "5F6B76", "accent": "0F7B83", "heading": "0F7B83"},
+  "heading": {"style": "band", "caps": false},
+  "header": {"align": "left", "contact_layout": "inline"},
+  "bullets": {"char": "•", "indent_mm": 4.5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": []},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

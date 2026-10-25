@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resume-design"
+version = "0.1.4"
+description = "Offline, privacy-first resume generation toolkit (Markdown/DOCX/PDF) with AI-agent adapters"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []          # runtime is standard library only
+
+[project.urls]
+Homepage = "https://github.com/lllllukewatchme-alt/truthful-resume"
+Issues = "https://github.com/lllllukewatchme-alt/truthful-resume/issues"
+
+[project.optional-dependencies]
+# Optional cross-checks and extra PDF text extraction; the toolkit works without them.
+extras = ["python-docx>=1.1", "pypdf>=4.0"]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools]
+packages = ["resume_design"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

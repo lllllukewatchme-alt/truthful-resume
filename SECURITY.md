@@ -2,8 +2,9 @@
 
 ## Reporting a vulnerability
 Please **do not open a public issue** for security problems. Use GitHub's private reporting:
-repository **Security → Report a vulnerability** (if it is not available, open an issue that only says "security contact
-requested", without details, and a maintainer will reach out).
+repository **Security → Report a vulnerability**. If that is not available, e-mail **lllllukewatchme@gmail.com** with the
+subject "truthful-resume security" (no real resumes or secrets in the message), or open an issue that only says "security
+contact requested", without details.
 
 Include: affected version (`VERSION`), what you did, what happened, and a **fictional** sample input. Never attach real resumes.
 

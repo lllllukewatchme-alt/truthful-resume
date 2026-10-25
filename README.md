@@ -246,7 +246,9 @@ python scripts/run_acceptance.py
 
 **怎样确认某个平台真的可用？** 看第 "平台兼容状态" 表。凡标"未实测"的，请自行验证后再依赖，也欢迎提交验证结果。
 
-## 25. 参与贡献与安全
+## 25. 反馈、参与贡献与安全
+
+- **反馈与建议**：优先在 GitHub Issues 提交（请只附虚构示例数据，不要附真实简历）；也可发邮件到 lllllukewatchme@gmail.com。
 
 - 贡献方式、测试要求和代码规范：`CONTRIBUTING.md`
 - 漏洞报告与密钥/个人数据注意事项：`SECURITY.md`

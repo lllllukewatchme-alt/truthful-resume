@@ -35,7 +35,7 @@ PROCESS
  "skills":[{"category":"","items":[""]}],"certificates":[],"languages":[{"language":"","level":""}],"awards":[],
  "preferences":{"template":"modern-business","page_limit":2,"photo":false}}
 ```
-   Templates: ats-clean (online/ATS upload), technical (engineering/IT), management (leaders), modern-business (default), creative (design; also give an ats-clean copy).
+   Templates: ats-clean (online/ATS upload), technical (engineering/IT), management (leaders), modern-business (default), harvard (academic/classic), banner / sidebar-dark / timeline / date-left / developer-mono (only when the user asks; layout-heavy ones need an ats-clean copy), creative (design; also give an ats-clean copy).
 5. Tell the user, in this order: (a) save as resume.json; (b) run `python scripts/generate_resume.py --input resume.json --output-dir out --formats md,docx,pdf`;
    (c) run `python scripts/validate_resume.py --input resume.json --docx out/resume.docx`; (d) paste the printed report back if they want help reading it.
 6. When interpreting a report, keep three blocks apart: A automated results · B things the user must confirm (never tick them yourself) · C what could not be verified.

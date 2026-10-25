@@ -1,0 +1,17 @@
+{
+  "name": "sidebar-dark",
+  "description": "Two columns with a dark sidebar (contact, skills, languages, certificates, awards) and a light main column for summary, experience, projects and education. Not ATS-safe.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 12, "right": 12, "bottom": 12, "left": 12}},
+  "fonts": {"latin": "Calibri", "east_asian": "Microsoft YaHei", "body_pt": 10, "name_pt": 27, "heading_pt": 11.5, "entry_pt": 10, "contact_pt": 9.5},
+  "spacing": {"line_multiple": 1.12, "para_after_pt": 2, "section_before_pt": 9, "section_after_pt": 3, "entry_before_pt": 5, "char_spacing_pt": 0},
+  "colors": {"text": "263238", "muted": "607D8B", "accent": "263238", "heading": "263238"},
+  "heading": {"style": "plain", "caps": true, "align": "left"},
+  "header": {"align": "left", "contact_layout": "stacked", "style": "plain"},
+  "bullets": {"char": "•", "indent_mm": 4},
+  "layout": {"columns": 2, "sidebar_side": "left", "sidebar_width_pct": 34, "sidebar_sections": ["skills", "languages", "certificates", "awards"],
+             "sidebar_fill": "263238", "sidebar_text": "ECEFF1", "sidebar_heading": "FFCA28", "sidebar_contact": true, "entry_style": "default"},
+  "header_footer": {"footer_text": "", "page_numbers": false},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": false, "use_tables": true, "use_text_boxes": false}
+}

@@ -211,9 +211,11 @@ class GenerateTests(TempCase):
                    re.search(r'w:line="(\d+)"', st).group(1),
                    "<w:tbl>" in doc)
             sigs[t] = sig
-        self.assertEqual(len(set(sigs.values())), 5, sigs)
-        self.assertTrue(sigs["creative"][4])
-        self.assertFalse(any(sigs[t][4] for t in sigs if t != "creative"))
+            style = templates.load_style(t)
+            wants_table = style["layout"].get("columns", 1) == 2 or style.get("header", {}).get("style") == "band"
+            self.assertEqual(sig[4], wants_table, f"{t}: table presence must follow the style config")
+        self.assertEqual(len(set(sigs.values())), len(sigs), sigs)
+        self.assertGreaterEqual(len(sigs), 11)
         for key in range(4):  # each of margins/fonts/colour/line spacing varies across templates
             self.assertGreater(len({s[key] for s in sigs.values()}), 1, key)
 

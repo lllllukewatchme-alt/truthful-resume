@@ -1,0 +1,16 @@
+{
+  "name": "date-left",
+  "description": "Europass/timeline-style layout: dates in a narrow left column, organisation, role and bullets in the wide right column (done with tab stops and hanging indents, no table). Some ATS may detach dates from roles: also produce ats-clean.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 17, "right": 17, "bottom": 15, "left": 17}},
+  "fonts": {"latin": "Georgia", "east_asian": "Microsoft YaHei", "body_pt": 10, "name_pt": 24, "heading_pt": 11.5, "entry_pt": 10, "contact_pt": 9.5},
+  "spacing": {"line_multiple": 1.15, "para_after_pt": 2, "section_before_pt": 11, "section_after_pt": 4, "entry_before_pt": 6, "char_spacing_pt": 0},
+  "colors": {"text": "2B2B2B", "muted": "6D4C41", "accent": "8D2F23", "heading": "8D2F23"},
+  "heading": {"style": "rule", "caps": true, "align": "left"},
+  "header": {"align": "left", "contact_layout": "inline", "style": "plain"},
+  "bullets": {"char": "–", "indent_mm": 4},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": [], "entry_style": "date_left", "date_col_mm": 40},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": false, "use_tables": false, "use_text_boxes": false}
+}

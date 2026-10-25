@@ -192,7 +192,8 @@ class RepoConsistency(unittest.TestCase):
         styles = {p.stem for p in (ROOT / "templates/styles").glob("*.json")}
         contents = {p.stem for p in (ROOT / "templates/content").glob("*.md")}
         self.assertTrue(styles <= contents)
-        self.assertEqual(styles, {"ats-clean", "technical", "management", "modern-business", "creative"})
+        self.assertEqual(styles, {"ats-clean", "technical", "management", "modern-business", "creative", "harvard", "banner",
+                                  "sidebar-dark", "timeline", "date-left", "developer-mono"})
         import json
         for s in styles:
             st = json.loads((ROOT / f"templates/styles/{s}.json").read_text(encoding="utf-8"))

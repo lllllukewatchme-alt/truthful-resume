@@ -1,6 +1,6 @@
 ---
 name: resume-design
-description: Create, improve, tailor to a job description (JD), translate and export professional resumes/CVs as Markdown, Word (.docx) and PDF with five visual templates (ATS-clean, technical, management, modern-business, creative). Trigger when the user asks to write, polish, redesign, localise (中文/English), ATS-optimise or export a resume/CV/简历. Do not trigger for cover letters, LinkedIn posts, interview coaching, or editing non-resume documents.
+description: Create, improve, tailor to a job description (JD), translate and export professional resumes/CVs as Markdown, Word (.docx) and PDF with eleven visual templates (ATS-clean, Harvard, technical, management, modern-business, creative, banner, dark sidebar, timeline, date-left, developer-mono). Trigger when the user asks to write, polish, redesign, localise (中文/English), ATS-optimise or export a resume/CV/简历. Do not trigger for cover letters, LinkedIn posts, interview coaching, or editing non-resume documents.
 ---
 
 # resume-design (Codex)
@@ -37,7 +37,7 @@ Short grouped questions: (1) name, contact, target role; (2) latest 1–2 jobs w
 
 ## Template choice
 User's explicit choice → online/ATS upload `ats-clean` → management roles `management` → creative roles `creative` (+ `ats-clean`) →
-engineering/IT `technical` → default `modern-business`. See `references/visual-design.md`.
+academic/classic `harvard` → engineering/IT `technical` → default `modern-business`. Other styles (`banner`, `sidebar-dark`, `timeline`, `date-left`, `developer-mono`) only on request; layout-heavy ones are not ATS-safe, so also produce `ats-clean`. See `references/visual-design.md`.
 
 ## Before you run any script
 Read `core/workflow.md` and `core/data-model.md` before you run a script for the first time in a task (once per task, not per command).

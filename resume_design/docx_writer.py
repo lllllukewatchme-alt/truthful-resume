@@ -36,6 +36,9 @@ class _Ctx:
         self.s, self.labels, self.rules, self.lang = style, labels, rules, lang
         self.f = style["fonts"]
         self.c = style["colors"]
+        self.layout = style.get("layout", {})
+        self.entry_style = self.layout.get("entry_style", "default")
+        self.pw = self.ml = self.mr = 0   # page geometry in twips, set by build_docx
         self.sp = style["spacing"]
         self.pag = style.get("pagination", {})
         self.date_style = rules.get("date_style", "iso")
@@ -78,12 +81,14 @@ def _tab() -> str:
 
 
 def _p(content: str, style: str | None = None, *, jc=None, keep_next=False, tabs=None,
-       before=None, after=None, ind_left=None) -> str:
+       before=None, after=None, ind_left=None, ind_hanging=None, bdr=None) -> str:
     pr = ""
     if style:
         pr += f'<w:pStyle w:val="{style}"/>'
     if keep_next:
         pr += "<w:keepNext/>"
+    if bdr:
+        pr += bdr
     if tabs:
         pr += "<w:tabs>" + "".join(f'<w:tab w:val="{v}" w:pos="{pos}"/>' for v, pos in tabs) + "</w:tabs>"
     if before is not None or after is not None:
@@ -94,7 +99,8 @@ def _p(content: str, style: str | None = None, *, jc=None, keep_next=False, tabs
             a += f' w:after="{int(after * 20)}"'
         pr += f"<w:spacing{a}/>"
     if ind_left is not None:
-        pr += f'<w:ind w:left="{ind_left}"/>'
+        hang = f' w:hanging="{ind_hanging}"' if ind_hanging else ""
+        pr += f'<w:ind w:left="{ind_left}"{hang}/>'
     if jc:
         pr += f'<w:jc w:val="{jc}"/>'
     return f"<w:p><w:pPr>{pr}</w:pPr>{content}</w:p>"
@@ -102,29 +108,49 @@ def _p(content: str, style: str | None = None, *, jc=None, keep_next=False, tabs
 
 # ----------------------------------------------------------------- blocks
 def _heading(ctx: _Ctx, text: str) -> str:
-    return _p(_run(text), "Heading1")
+    h = ctx.s.get("heading", {})
+    return _p(_run(h.get("prefix", "") + text), "Heading1", jc="center" if h.get("align") == "center" else None)
 
 
 def _entry_block(ctx: _Ctx, e: dict, width: int, max_bullets: int) -> list[str]:
     out = []
     rng = dates.format_range(e.get("start", ""), e.get("end", ""), ctx.date_style, ctx.lang)
-    title = _runs(e.get("organization", ""), bold=True)
-    if rng:
-        title += _tab() + _runs(rng, color=ctx.c["muted"])
-        out.append(_p(title, "Heading2", tabs=[("right", width)], keep_next=True))
-    else:
-        out.append(_p(title, "Heading2", keep_next=True))
+    org = _runs(e.get("organization", ""), bold=True)
+    bullet_ind = _tw(ctx.s["bullets"]["indent_mm"])
+    kind = ctx.entry_style
+    base, hang_title, bdr = 0, None, None
     sub = " · ".join(x for x in (e.get("role", ""), e.get("location", "")) if x)
+    has_body = bool(e.get("description") or e.get("bullets"))
+    if kind == "date_left":
+        col = _tw(ctx.layout.get("date_col_mm", 34))
+        title = _runs(rng, color=ctx.c["muted"]) + _tab() + org
+        out.append(_p(title, "Heading2", tabs=[("left", col)], keep_next=True, ind_left=col, ind_hanging=col))
+        base = col
+    elif kind == "timeline":
+        base = 300
+        bdr = f'<w:pBdr><w:left w:val="single" w:sz="18" w:space="10" w:color="{ctx.c["accent"]}"/></w:pBdr>'
+        title = org + (_tab() + _runs(rng, color=ctx.c["muted"]) if rng else "")
+        out.append(_p(title, "Heading2", tabs=[("right", width)] if rng else None, keep_next=True, ind_left=base, bdr=bdr))
+    else:
+        title = org
+        if rng:
+            title += _tab() + _runs(rng, color=ctx.c["muted"])
+            out.append(_p(title, "Heading2", tabs=[("right", width)], keep_next=True))
+        else:
+            out.append(_p(title, "Heading2", keep_next=True))
+    ind = base if base else None
     if sub:
-        out.append(_p(_runs(sub, italic=True, color=ctx.c["muted"]), "EntrySub",
-                      keep_next=bool(e.get("description") or e.get("bullets"))))
+        out.append(_p(_runs(sub, italic=True, color=ctx.c["muted"]), "EntrySub", keep_next=has_body, ind_left=ind, bdr=bdr))
     if e.get("description"):
-        out.append(_p(_runs(e["description"]), "BodyText"))
+        out.append(_p(_runs(e["description"]), "BodyText", ind_left=ind, bdr=bdr))
     bullets = e.get("bullets", [])
     if max_bullets and ctx.s.get("_enforce_max_bullets"):
         bullets = bullets[:max_bullets]
     for b in bullets:
-        out.append(_p(_runs(bullet_text(b)), "ListBullet"))
+        if base:
+            out.append(_p(_runs(bullet_text(b)), "ListBullet", ind_left=base + bullet_ind, ind_hanging=bullet_ind, bdr=bdr))
+        else:
+            out.append(_p(_runs(bullet_text(b)), "ListBullet"))
     return out
 
 
@@ -202,18 +228,52 @@ def _contact_items(ctx: _Ctx, d: dict) -> list[str]:
     return [b[k] for k in ("phone", "email", "location", "website") if b.get(k)]
 
 
-def _header_block(ctx: _Ctx, d: dict, rules: dict) -> list[str]:
-    jc = {"center": "center", "left": "left"}.get(ctx.s.get("header", {}).get("align", "left"), "left")
-    out = [_p(_runs(display_name(d, rules)), "Title", jc=jc)]
+def _header_block(ctx: _Ctx, d: dict, rules: dict, with_contact: bool = True) -> list[str]:
+    hdr = ctx.s.get("header", {})
+    band = hdr.get("style") == "band"
+    jc = {"center": "center", "left": "left"}.get(hdr.get("align", "left"), "left")
+    tc = hdr.get("band_text", "FFFFFF") if band else None
+    paras = [_p(_runs(display_name(d, rules), color=tc), "Title", jc=jc)]
     if d["basics"].get("headline"):
-        out.append(_p(_runs(d["basics"]["headline"], color=ctx.c["muted"]), "Contact", jc=jc))
-    items = _contact_items(ctx, d)
+        paras.append(_p(_runs(d["basics"]["headline"], color=tc or ctx.c["muted"]), "Contact", jc=jc))
+    items = _contact_items(ctx, d) if with_contact else []
     if items:
-        if ctx.s.get("header", {}).get("contact_layout") == "stacked":
-            out += [_p(_runs(i), "Contact", jc=jc) for i in items]
+        if hdr.get("contact_layout") == "stacked":
+            paras += [_p(_runs(i, color=tc), "Contact", jc=jc) for i in items]
         else:
-            out.append(_p(_runs("  |  ".join(items)), "Contact", jc=jc))
-    return out
+            paras.append(_p(_runs("  |  ".join(items), color=tc), "Contact", jc=jc))
+    if not band:
+        return paras
+    # banner: one full-width cell bleeding to the page edges; text stays aligned with the body margins.
+    # (The package has no compat settings, so Word measures tblInd to the cell TEXT: indent 0 + left cell margin = page edge.)
+    fill = hdr.get("band_color", ctx.c["accent"])
+    mar = (f'<w:tcMar><w:top w:w="200" w:type="dxa"/><w:left w:w="{ctx.ml}" w:type="dxa"/>'
+           f'<w:bottom w:w="200" w:type="dxa"/><w:right w:w="{ctx.mr}" w:type="dxa"/></w:tcMar>')
+    cell = (f'<w:tc><w:tcPr><w:tcW w:w="{ctx.pw}" w:type="dxa"/><w:shd w:val="clear" w:color="auto" w:fill="{fill}"/>{mar}</w:tcPr>'
+            f'{_no_keep_next("".join(paras))}</w:tc>')
+    tbl = (f'<w:tbl><w:tblPr><w:tblW w:w="{ctx.pw}" w:type="dxa"/><w:tblInd w:w="0" w:type="dxa"/><w:tblLayout w:type="fixed"/>'
+           f'<w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr>'
+           f'<w:tblGrid><w:gridCol w:w="{ctx.pw}"/></w:tblGrid><w:tr>{cell}</w:tr></w:tbl>')
+    return [tbl, _p("", "BodyText", after=2)]
+
+
+def _recolor(xml: str, text_color: str, head_color: str) -> str:
+    """Re-colour every run in a block of paragraphs (dark sidebar): headings get head_color, the rest text_color.
+    The colour element is inserted in schema order (before sz/szCs/highlight) to keep the document strictly valid."""
+    def run_pr(col):
+        def fix(m):
+            inner = re.sub(r'<w:color w:val="\w+"/>', "", m.group(1))
+            cut = re.search(r"<w:(sz|szCs|highlight)\b", inner)
+            at = cut.start() if cut else len(inner)
+            return f'<w:rPr>{inner[:at]}<w:color w:val="{col}"/>{inner[at:]}</w:rPr>'
+        return fix
+
+    def para(m):
+        p = m.group(0)
+        col = head_color if 'w:pStyle w:val="Heading1"' in p else text_color
+        p = re.sub(r"<w:rPr>(.*?)</w:rPr>", run_pr(col), p)
+        return re.sub(r"<w:r>(?!<w:rPr>)", f'<w:r><w:rPr><w:color w:val="{col}"/></w:rPr>', p)
+    return re.sub(r"<w:p>.*?</w:p>", para, xml, flags=re.S)
 
 
 def _no_keep_next(xml: str) -> str:
@@ -246,7 +306,9 @@ def _styles_xml(ctx: _Ctx) -> str:
     caps = "<w:caps/>" if ctx.s.get("heading", {}).get("caps") else ""
     border = f'<w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="{c["accent"]}"/></w:pBdr>'
     shade = f'<w:shd w:val="clear" w:color="auto" w:fill="{_tint(c["accent"], 0.88)}"/>'
-    h1_ppr = {"rule": border, "caps_rule": border, "band": shade, "plain": ""}.get(hstyle, border)
+    bar = f'<w:pBdr><w:left w:val="single" w:sz="36" w:space="8" w:color="{c["accent"]}"/></w:pBdr>'
+    h1_ppr = {"rule": border, "caps_rule": border, "band": shade, "plain": "", "left_bar": bar}.get(hstyle, border)
+    h1_ind = '<w:ind w:left="220"/>' if hstyle == "left_bar" else ""
     h1_color = c["heading"]
     wc = "<w:widowControl/>" if ctx.pag.get("widow_control", True) else ""
     kn = "<w:keepNext/>"
@@ -261,7 +323,7 @@ def _styles_xml(ctx: _Ctx) -> str:
                 f'{"<w:qFormat/>" if q else ""}<w:pPr>{ppr}</w:pPr><w:rPr>{rpr}</w:rPr></w:style>')
 
     ppr_h1 = (f'{kn}{h1_ppr}<w:spacing w:before="{int(sp["section_before_pt"] * 20)}" '
-              f'w:after="{int(sp["section_after_pt"] * 20)}"/><w:outlineLvl w:val="0"/>')
+              f'w:after="{int(sp["section_after_pt"] * 20)}"/>{h1_ind}<w:outlineLvl w:val="0"/>')
     h1_rpr = f'<w:b/><w:bCs/>{caps}<w:color w:val="{h1_color}"/><w:sz w:val="{int(f["heading_pt"] * 2)}"/><w:szCs w:val="{int(f["heading_pt"] * 2)}"/>'
     styles = [
         f'<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="{f["latin"]}" w:hAnsi="{f["latin"]}" '
@@ -374,20 +436,26 @@ def build_docx(data: dict, style: dict, labels: dict, rules: dict, section_order
     m = style["page"]["margins_mm"]
     ml, mr, mt, mb = _tw(m["left"]), _tw(m["right"]), _tw(m["top"]), _tw(m["bottom"])
     width = pw - ml - mr
+    ctx.pw, ctx.ml, ctx.mr = pw, ml, mr
 
-    body = _header_block(ctx, d, rules)
     layout = style.get("layout", {})
+    sidebar_contact = layout.get("columns", 1) == 2 and layout.get("sidebar_contact", False)
+    body = _header_block(ctx, d, rules, with_contact=not sidebar_contact)
     if layout.get("columns", 1) == 2:
         side_keys = [k for k in section_order if k in layout.get("sidebar_sections", [])]
         main_keys = [k for k in section_order if k not in side_keys]
         side_w = int(width * layout.get("sidebar_width_pct", 30) / 100)
         main_w = width - side_w
         side, main = [], []
+        if sidebar_contact:
+            side += [_heading(ctx, labels.get("contact", "Contact"))] + [_p(_runs(i), "BodyText") for i in _contact_items(ctx, d)]
         for k in side_keys:
             side += _section(ctx, d, k, side_w - 280, True, max_bullets)
         for k in main_keys:
             main += _section(ctx, d, k, main_w - 280, False, max_bullets)
-        fill = _tint(ctx.c["accent"], 0.93)
+        fill = layout.get("sidebar_fill") or _tint(ctx.c["accent"], 0.93)
+        if layout.get("sidebar_text"):
+            side = [_recolor("".join(side), layout["sidebar_text"], layout.get("sidebar_heading", layout["sidebar_text"]))]
         if layout.get("sidebar_side", "left") == "left":
             body.append(_table(side_w, main_w, side, main, fill, None))
         else:

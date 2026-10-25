@@ -1,0 +1,16 @@
+{
+  "name": "harvard",
+  "description": "Classic university/finance/consulting format: Times, centred name, thin rules, black on white, education first. Single column, ATS-safe.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 19, "right": 19, "bottom": 17, "left": 19}},
+  "fonts": {"latin": "Times New Roman", "east_asian": "SimSun", "body_pt": 11, "name_pt": 20, "heading_pt": 11.5, "entry_pt": 11, "contact_pt": 10.5},
+  "spacing": {"line_multiple": 1.08, "para_after_pt": 2, "section_before_pt": 9, "section_after_pt": 3, "entry_before_pt": 4, "char_spacing_pt": 0},
+  "colors": {"text": "000000", "muted": "333333", "accent": "000000", "heading": "000000"},
+  "heading": {"style": "caps_rule", "caps": true, "align": "left"},
+  "header": {"align": "center", "contact_layout": "inline", "style": "plain"},
+  "bullets": {"char": "•", "indent_mm": 5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": [], "entry_style": "default"},
+  "header_footer": {"footer_text": "", "page_numbers": false},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

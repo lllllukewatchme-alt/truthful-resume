@@ -1,0 +1,97 @@
+{
+  "basics": {
+    "name": "Maya Chen",
+    "headline": "Senior Product Designer · Design Systems & Growth",
+    "email": "maya.chen@example.com",
+    "phone": "+1 555 010 0142",
+    "location": "Seattle, WA",
+    "website": "https://portfolio.example.com/maya",
+    "summary": "Product designer with 9 years of experience shipping B2B and consumer products. Leads cross-functional squads from discovery to launch, builds design systems that engineering teams actually adopt, and uses experiment data to decide what to ship. (Fictional example data.)"
+  },
+  "target": {"role": "Senior Product Designer", "industry": "SaaS", "locale": "en-US", "language": "en", "job_description": ""},
+  "experience": [
+    {
+      "organization": "Northwind Analytics",
+      "role": "Senior Product Designer",
+      "location": "Seattle, WA",
+      "start": "2021-02",
+      "end": "present",
+      "bullets": [
+        "Led the redesign of the reporting workspace for 40,000 monthly active users, covering research, prototyping and handoff",
+        "Created the company design system (120 components, tokens, accessibility guidelines) adopted by 6 product squads",
+        "Cut time-to-first-report from 14 minutes to 5 minutes through onboarding experiments run with the growth team",
+        "Mentored 3 designers and ran the weekly design critique"
+      ],
+      "evidence": ["Fictional example: figures come from the invented Q4 product review deck"],
+      "confirmation_status": "user_confirmed"
+    },
+    {
+      "organization": "Contoso Retail Labs",
+      "role": "Product Designer",
+      "location": "Portland, OR",
+      "start": "2017-06",
+      "end": "2021-01",
+      "bullets": [
+        "Designed the checkout flow of the mobile app and partnered with engineering to ship it in two releases",
+        "Introduced usability testing every sprint; findings fed a prioritised backlog used by the product manager",
+        "Raised the mobile conversion rate from 2.1% to 2.9% across three A/B tests",
+        "Built a shared icon and illustration library used by web and mobile teams"
+      ],
+      "evidence": ["Fictional example: invented A/B test report"],
+      "confirmation_status": "user_confirmed"
+    },
+    {
+      "organization": "Fabrikam Studio",
+      "role": "UX Designer",
+      "location": "Vancouver, BC",
+      "start": "2014-09",
+      "end": "2017-05",
+      "bullets": [
+        "Delivered websites and prototypes for 18 small-business clients",
+        "Ran stakeholder workshops and translated findings into wireframes and clickable prototypes"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "organization": "Open Design Tokens",
+      "role": "Maintainer",
+      "start": "2022-03",
+      "end": "present",
+      "bullets": [
+        "Open-source tool that converts design tokens to CSS, iOS and Android formats; used by 300+ teams",
+        "Wrote the documentation and review guidelines for external contributors"
+      ]
+    },
+    {
+      "organization": "Accessibility Audit Kit",
+      "role": "Author",
+      "start": "2019-09",
+      "end": "2020-02",
+      "bullets": ["Checklist and workshop material for auditing web products against WCAG 2.1 AA"]
+    }
+  ],
+  "education": [
+    {"organization": "University of Washington", "role": "B.A. in Interaction Design", "location": "Seattle, WA", "start": "2010-09", "end": "2014-06",
+     "bullets": ["Graduated with honours; design thesis on accessible onboarding"]},
+    {"organization": "Example Academy of Design", "role": "Certificate in Service Design", "start": "2016", "end": "2016"}
+  ],
+  "skills": [
+    {"category": "Design", "items": ["Product strategy", "Interaction design", "Prototyping", "Design systems", "User research"]},
+    {"category": "Tools", "items": ["Figma", "FigJam", "Protopie", "Miro", "Maze"]},
+    {"category": "Data", "items": ["A/B testing", "Funnel analysis", "SQL (basic)"]},
+    {"category": "Collaboration", "items": ["Workshop facilitation", "Design critique", "Mentoring"]},
+    {"category": "Front-end literacy", "items": ["HTML/CSS", "React (reading)", "Storybook"]}
+  ],
+  "certificates": [
+    {"name": "Certified Usability Analyst (Example)", "issuer": "Example Usability Institute", "date": "2018-05"},
+    {"name": "Accessibility Fundamentals (Example)", "issuer": "Example Web Academy", "date": "2020-01"}
+  ],
+  "languages": [{"language": "English", "level": "Native"}, {"language": "Mandarin", "level": "Professional working"}, {"language": "French", "level": "Elementary"}],
+  "awards": [
+    {"name": "Design Excellence Award (Example)", "date": "2023", "description": "Reporting workspace redesign"},
+    {"name": "Best Mobile Experience (Example)", "date": "2019", "description": "Checkout flow"},
+    {"name": "Speaker, Example Design Conference", "date": "2022", "description": "Talk on adopting design systems"}
+  ],
+  "preferences": {"template": "", "page_limit": 2, "photo": false}
+}

@@ -77,9 +77,20 @@ DEFAULT_RULES = {
                            "工程师", "开发", "算法", "测试", "运维", "架构", "研发", "技术", "程序员", "后端", "前端"],
     "management_keywords": ["director", "vp", "head of", "chief", "cto", "ceo", "manager", "总监", "经理",
                            "负责人", "总经理", "副总裁", "主管", "高管"],
+    "academic_keywords": ["professor", "postdoc", "lecturer", "phd candidate", "教授", "讲师", "博士后", "助理教授"],
     "creative_keywords": ["designer", "creative", "art director", "illustrator", "设计师", "设计", "美术", "创意", "插画"],
     "default": DEFAULT_TEMPLATE,
 }
+
+
+def _keyword_in(keyword: str, low_text: str) -> bool:
+    """Substring match for CJK keywords; for ASCII keywords the match must start at a word boundary, and short ones
+    (cto, ceo, vp, sre ...) must also end at one - so 'cto' no longer matches inside 'Postdoctoral'."""
+    k = keyword.lower()
+    if not k.isascii():
+        return k in low_text
+    tail = r"(?![a-z])" if len(k) <= 4 else ""
+    return re.search(r"(?<![a-z])" + re.escape(k) + tail, low_text) is not None
 
 
 def choose_template(role: str, explicit: str = "", ats_submission: bool = False,
@@ -98,7 +109,7 @@ def choose_template(role: str, explicit: str = "", ats_submission: bool = False,
     low = (role or "").lower()
     # management is checked before technical so 'engineering manager' is treated as management
     for key, tpl in (("management_keywords", "management"), ("creative_keywords", "creative"),
-                     ("technical_keywords", "technical")):
-        if any(k.lower() in low for k in r[key]):
+                     ("academic_keywords", "harvard"), ("technical_keywords", "technical")):
+        if any(_keyword_in(k, low) for k in r[key]):
             return tpl, f"role matches {key}"
     return r["default"], "default"

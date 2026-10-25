@@ -1,10 +1,10 @@
 ---
 name: resume-design
-description: Create, improve, tailor to a job description (JD), translate and export professional resumes/CVs as Markdown, Word (.docx) and PDF with five visual templates (ATS-clean, technical, management, modern-business, creative). Use when the user asks to write, polish, redesign, localise (中文/English), ATS-optimise or export a resume/CV/简历. Do not use for cover letters, LinkedIn posts, interview coaching, or editing arbitrary non-resume documents.
+description: Create, improve, tailor to a job description (JD), translate and export professional resumes/CVs as Markdown, Word (.docx) and PDF with eleven visual templates (ATS-clean, Harvard, technical, management, modern-business, creative, banner, dark sidebar, timeline, date-left, developer-mono). Use when the user asks to write, polish, redesign, localise (中文/English), ATS-optimise or export a resume/CV/简历. Do not use for cover letters, LinkedIn posts, interview coaching, or editing arbitrary non-resume documents.
 license: MIT
 compatibility: Needs Python 3.9+ (stdlib only). PDF export needs Microsoft Word (Windows) or LibreOffice installed locally.
 metadata:
-  version: "0.1.4"
+  version: "0.2.0"
 ---
 
 # resume-design (Claude Code)
@@ -41,7 +41,7 @@ If the user says skip, drop it and do not ask again.
 
 ## Template choice
 Explicit user choice wins → online/ATS upload: `ats-clean` → management roles: `management` → creative roles: `creative`
-(also produce `ats-clean`) → engineering/IT: `technical` → otherwise `modern-business`. Details: `references/visual-design.md`.
+(also produce `ats-clean`) → academic/student/finance-classic: `harvard` → engineering/IT: `technical` → otherwise `modern-business`. Other styles (`banner`, `sidebar-dark`, `timeline`, `date-left`, `developer-mono`) only when the user asks; the layout-heavy ones are not ATS-safe, so also produce `ats-clean`. Details: `references/visual-design.md`.
 
 ## Before you run any script
 Read `core/workflow.md` and `core/data-model.md` before you run a script for the first time in a task (once per task, not per command).

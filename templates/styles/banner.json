@@ -1,0 +1,16 @@
+{
+  "name": "banner",
+  "description": "Full-width coloured header banner with white name and contact line, then a clean single-column body. Uses one table for the banner (not ATS-safe: also produce ats-clean).",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 9, "right": 16, "bottom": 14, "left": 16}},
+  "fonts": {"latin": "Trebuchet MS", "east_asian": "Microsoft YaHei", "body_pt": 10, "name_pt": 26, "heading_pt": 11.5, "entry_pt": 10, "contact_pt": 9.5},
+  "spacing": {"line_multiple": 1.12, "para_after_pt": 2, "section_before_pt": 10, "section_after_pt": 3, "entry_before_pt": 5, "char_spacing_pt": 0},
+  "colors": {"text": "1E2A38", "muted": "5A6772", "accent": "1F3A5F", "heading": "1F3A5F"},
+  "heading": {"style": "rule", "caps": true, "align": "left"},
+  "header": {"align": "left", "contact_layout": "inline", "style": "band", "band_color": "1F3A5F", "band_text": "FFFFFF"},
+  "bullets": {"char": "▪", "indent_mm": 4.5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": [], "entry_style": "default"},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": false, "use_tables": true, "use_text_boxes": false}
+}

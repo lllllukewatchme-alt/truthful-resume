@@ -2,7 +2,7 @@
 
 > **English summary** — An offline, privacy-first resume toolkit for AI coding assistants (Claude Code / Codex skills, plus copy-paste
 > prompts for DeepSeek, Doubao and other chat models). Python standard library only. It creates, improves, tailors (JD) and translates
-> resumes (zh/en), renders **Markdown / DOCX / PDF** with five real templates (ATS-clean, technical, management, modern-business, creative),
+> resumes (zh/en), renders **Markdown / DOCX / PDF** with eleven real templates (ATS-clean, technical, management, modern-business, creative, Harvard, banner, dark sidebar, timeline, date-left, developer-mono),
 > and **never invents facts**: missing data stays a visible `{{MISSING:field}}` placeholder, rewrites are marked for your approval, and the
 > tool will not call a resume "ready to submit" without your explicit confirmation. Everything runs locally; no network, no API keys.
 > The repository is `truthful-resume`; the skill/package inside is named `resume-design`. License: MIT.
@@ -23,6 +23,32 @@
 
 详细证据与说明见 `core/platform-capabilities.md`。
 
+## 模板预览（11 种）
+
+下面是用**虚构示例**（`examples/sample_resume_rich.json`，两页的英文简历）生成、由 Microsoft Word 导出 PDF 后截取第 1 页的效果。
+同一份数据，只换 `--template`。这是命令行工具，没有图形界面；这些图片展示的是生成出来的简历。
+
+![11 种模板总览](docs/images/templates-overview.png)
+
+| 模板 | 适合 | ATS 友好 | 大图 |
+|---|---|---|---|
+| `ats-clean` | 在线投递 / ATS 上传：单栏、黑白、标准标题 | ✅ | [查看](docs/images/template-ats-clean.png) |
+| `harvard` | 学生、学术、金融/咨询：Times 字体、居中抬头、教育在前 | ✅ | [查看](docs/images/template-harvard.png) |
+| `technical` | 工程/IT：紧凑、技能靠前、蓝色强调 | ✅ | [查看](docs/images/template-technical.png) |
+| `management` | 管理/高管：衬线字体、留白多、藏青色 | ✅ | [查看](docs/images/template-management.png) |
+| `modern-business` | 通用商务（默认）：章节色带、青绿色 | ✅ | [查看](docs/images/template-modern-business.png) |
+| `timeline` | 强调职业发展脉络：每段经历左侧一条连续竖线 | ✅ | [查看](docs/images/template-timeline.png) |
+| `banner` | 醒目抬头：整幅彩色横幅（用到一个表格） | ❌ 另附 ats-clean | [查看](docs/images/template-banner.png) |
+| `sidebar-dark` | 深色侧栏（联系方式、技能、证书、奖项）+ 浅色正文 | ❌ 另附 ats-clean | [查看](docs/images/template-sidebar-dark.png) |
+| `date-left` | Europass 式：日期在左栏，内容在右栏 | ❌ 日期可能被解析器拆开，另附 ats-clean | [查看](docs/images/template-date-left.png) |
+| `creative` | 设计类：浅色侧栏双栏、橙色强调 | ❌ 另附 ats-clean | [查看](docs/images/template-creative.png) |
+| `developer-mono` | 工程师的终端/README 风格：等宽字体，`// Section` 标题 | ❌ 标题带前缀，另附 ats-clean | [查看](docs/images/template-developer-mono.png) |
+
+版式参考了常见的简历惯例（经典 Harvard 格式、Europass/时间线的日期栏、横幅与侧栏设计、开发者 README 风格）；样式文件为原创，没有复制任何第三方模板文件。
+`banner`、`sidebar-dark`、`timeline`、`date-left`、`developer-mono` 不会被自动选中，需要你用 `--template` 指定。
+生成方式：`python scripts/generate_resume.py --input examples/sample_resume_rich.json --output-dir out --formats pdf --template <名称>`（需要 Word 或 LibreOffice）。
+中文示例见 `examples/sample_resume_rich.md`。
+
 ## 1. 项目简介
 
 一个由「通用核心 + 平台适配器 + 独立文件生成引擎」组成的简历工具包：
@@ -35,7 +61,7 @@
 
 ## 2. 主要功能
 
-创建 / 优化 / 按 JD 定制 / 换风格 / 中英文及其他语言 / 导出与检查；5 种真正不同的视觉模板；三级质量报告（A 自动可验证 · B 需人工确认 · C 环境不可验证）；
+创建 / 优化 / 按 JD 定制 / 换风格 / 中英文及其他语言 / 导出与检查；11 种真正不同的视觉模板；三级质量报告（A 自动可验证 · B 需人工确认 · C 环境不可验证）；
 状态模型 `draft → needs_review → validated → ready_to_submit`；统一占位符 `{{MISSING:字段名}}`；默认不覆盖文件。
 
 ## 3. 架构
@@ -56,7 +82,7 @@ tests/ reports/        自动化测试与验收报告（虚构数据）
 |---|---|
 | `core/workflow.md` `data-model.md` `quality-rules.md` `platform-capabilities.md` | 工作流、数据模型、质量/状态规则、平台兼容矩阵 |
 | `references/*.md` | 写作、视觉、国际化、ATS、质检、隐私、平台适配 |
-| `templates/styles/*.json` | ats-clean / technical / management / modern-business / creative 样式（与内容分离，可单独修改） |
+| `templates/styles/*.json` | 11 个样式：ats-clean / technical / management / modern-business / creative / harvard / banner / sidebar-dark / timeline / date-left / developer-mono（与内容分离，可单独修改） |
 | `templates/selection-rules.json` | 自动选模板规则的覆盖项（可配置，用户指定永远优先） |
 | `examples/` | 虚构示例简历（中文 md、英文 json）与 JD |
 
@@ -143,7 +169,7 @@ python scripts/match_jd.py --input examples/sample_resume.md --jd examples/sampl
 
 ## 16. 如何切换模板
 
-`--template ats-clean|technical|management|modern-business|creative`；不指定时按 `references/visual-design.md` 的规则自动选择（用户指定 > `--ats-submission` > 岗位关键词 > 默认 modern-business），规则可在 `templates/selection-rules.json` 覆盖。
+`--template ats-clean|technical|management|modern-business|creative|harvard|banner|sidebar-dark|timeline|date-left|developer-mono`；不指定时按 `references/visual-design.md` 的规则自动选择（用户指定 > `--ats-submission` > 岗位关键词 > 默认 modern-business），规则可在 `templates/selection-rules.json` 覆盖。
 `creative` 为双栏、非 ATS 友好，请同时生成 `ats-clean` 版本。
 
 ## 17. 如何生成 Markdown、DOCX 和 PDF

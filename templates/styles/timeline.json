@@ -1,0 +1,16 @@
+{
+  "name": "timeline",
+  "description": "Single column with a continuous vertical accent line down the left of every experience/education/project entry (a career timeline) and bar-style section headings. Text-only, ATS-safe.",
+  "density": "normal",
+  "page": {"size": "A4", "margins_mm": {"top": 15, "right": 17, "bottom": 14, "left": 17}},
+  "fonts": {"latin": "Calibri", "east_asian": "Microsoft YaHei", "body_pt": 10.5, "name_pt": 24, "heading_pt": 12, "entry_pt": 10.5, "contact_pt": 10},
+  "spacing": {"line_multiple": 1.14, "para_after_pt": 2, "section_before_pt": 11, "section_after_pt": 4, "entry_before_pt": 6, "char_spacing_pt": 0},
+  "colors": {"text": "212121", "muted": "616161", "accent": "00796B", "heading": "00796B"},
+  "heading": {"style": "left_bar", "caps": true, "align": "left"},
+  "header": {"align": "left", "contact_layout": "inline", "style": "plain"},
+  "bullets": {"char": "•", "indent_mm": 4.5},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": [], "entry_style": "timeline"},
+  "header_footer": {"footer_text": "", "page_numbers": true},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": true},
+  "ats": {"safe": true, "use_tables": false, "use_text_boxes": false}
+}

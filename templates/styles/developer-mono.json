@@ -1,0 +1,16 @@
+{
+  "name": "developer-mono",
+  "description": "Terminal/README-inspired look for engineers: monospace Latin font, '// section' headings, compact spacing. The '//' prefix changes the heading text, so it is not ATS-safe: also produce ats-clean or technical.",
+  "density": "compact",
+  "page": {"size": "A4", "margins_mm": {"top": 13, "right": 15, "bottom": 12, "left": 15}},
+  "fonts": {"latin": "Consolas", "east_asian": "Microsoft YaHei", "body_pt": 9.5, "name_pt": 20, "heading_pt": 11, "entry_pt": 9.5, "contact_pt": 9},
+  "spacing": {"line_multiple": 1.08, "para_after_pt": 1, "section_before_pt": 8, "section_after_pt": 2, "entry_before_pt": 4, "char_spacing_pt": 0},
+  "colors": {"text": "24292F", "muted": "6E7781", "accent": "1A7F37", "heading": "1A7F37"},
+  "heading": {"style": "plain", "caps": false, "align": "left", "prefix": "// "},
+  "header": {"align": "left", "contact_layout": "inline", "style": "plain"},
+  "bullets": {"char": ">", "indent_mm": 4},
+  "layout": {"columns": 1, "sidebar_side": "left", "sidebar_width_pct": 0, "sidebar_sections": [], "entry_style": "default"},
+  "header_footer": {"footer_text": "", "page_numbers": false},
+  "pagination": {"keep_with_next": true, "widow_control": true, "avoid_split_entries": false},
+  "ats": {"safe": false, "use_tables": false, "use_text_boxes": false}
+}

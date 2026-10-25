@@ -39,7 +39,7 @@
  "skills":[{"category":"","items":[""]}],"certificates":[],"languages":[{"language":"","level":""}],"awards":[],
  "preferences":{"template":"modern-business","page_limit":2,"photo":false}}
 ```
-   模板：ats-clean / technical / management / modern-business（默认）/ creative（另附 ats-clean 版）。
+   模板：ats-clean / technical / management / modern-business（默认）/ creative（另附 ats-clean 版）；harvard（学术/经典）；用户指定时可用 banner / sidebar-dark / timeline / date-left / developer-mono（版式重的另附 ats-clean）。
 5. 提示用户本地运行：`python scripts/generate_resume.py --input resume.json --output-dir out --formats md,docx,pdf`，再运行
    `python scripts/validate_resume.py --input resume.json --docx out/resume.docx`，可把报告贴回来请你解读。
 6. 解读报告分三块：A 自动检查 · B 需用户确认（你不能代为确认）· C 当前环境无法验证。状态：draft → needs_review → validated → ready_to_submit。

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 - 2026-10-25
+- Six new templates (11 in total): `harvard` (classic, education-first), `banner` (full-width header band), `sidebar-dark` (dark sidebar with contact/skills),
+  `timeline` (vertical line down every entry), `date-left` (Europass-style date column), `developer-mono` (`// section` monospace look).
+  Layouts follow common résumé conventions; the style files are original, no third-party template files were copied.
+- Renderer options (all optional, defaults unchanged): `heading.prefix/align/left_bar`, `header.style=band`, `layout.sidebar_fill/sidebar_text/sidebar_heading/sidebar_contact`,
+  `layout.entry_style=timeline|date_left`, `layout.date_col_mm`.
+- New richer fictional examples: `examples/sample_resume_rich.json` (English, product designer) and `examples/sample_resume_rich.md` (Chinese, tech manager).
+- `harvard` is auto-selected for academic roles (professor, postdoc, lecturer, 教授, 讲师, 博士后).
+
 ## 0.1.4 - 2026-10-25 (first public release)
 First public release of the repository `truthful-resume` (skill/package name `resume-design`), MIT licensed.
 
